@@ -10,13 +10,25 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@Override
 	public boolean add(T item) {
 		if (sizeOfArray == currentItems.length) {
-			System.out.println("");
-			System.out.println("I will resize the Array - NOW!");
 			currentItems = Arrays.copyOf(currentItems, currentItems.length * 2);
 		}
-		currentItems[sizeOfArray] = item;
-		sizeOfArray++;
+		currentItems[sizeOfArray++] = item;
 		return true;
+	}
+
+	@Override
+	public boolean add(int index, T item) throws IndexOutOfBoundsException {
+		if (sizeOfArray == currentItems.length) {
+			currentItems = Arrays.copyOf(currentItems, currentItems.length * 2);
+			if (currentItems == null) {
+				int invalidIndex = currentItems.length + 1;
+				System.err.println("Cannot add element at index position " + invalidIndex);
+			}
+			return false;
+		} else {
+			currentItems[sizeOfArray++] = item;
+			return true;
+		}
 	}
 
 	@Override
@@ -28,9 +40,17 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@Override
 	public T get(int index) throws IndexOutOfBoundsException {
 		if (index >= sizeOfArray) {
-			throw new IndexOutOfBoundsException("The array is out of beyond");
+			throw new IndexOutOfBoundsException(
+					"The index at " + index + " is greater than or equal to the size of " + sizeOfArray);
 		}
 
 		return (T) currentItems[index];
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public T remove(int index) throws IndexOutOfBoundsException {
+return null;
+	}
+	
 }
