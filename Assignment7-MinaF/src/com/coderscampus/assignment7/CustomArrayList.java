@@ -41,16 +41,21 @@ public class CustomArrayList<T> implements CustomList<T> {
 	public T get(int index) throws IndexOutOfBoundsException {
 		if (index >= sizeOfArray) {
 			throw new IndexOutOfBoundsException(
-					"The index at " + index + " is greater than or equal to the size of " + sizeOfArray);
+					"The index at " + index + " is greater than to the size of " + sizeOfArray);
 		}
-
 		return (T) currentItems[index];
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public T remove(int index) throws IndexOutOfBoundsException {
-return null;
-	}
-	
+		Object[] anotherArray = null;
+		anotherArray = new Object[currentItems.length-1];
+		System.arraycopy(currentItems,0,anotherArray, 0, index);
+		Object item = currentItems[index];
+		// Copy the elements from index + 1 till end from original array to the other array
+		System.arraycopy(currentItems, index + 1, anotherArray, index, currentItems.length - index - 1);
+		return (T) item;	
+		}
+
 }
