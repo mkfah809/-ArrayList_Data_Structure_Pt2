@@ -1,13 +1,15 @@
 package com.coderscampus.assignment7;
 
+
+
 public class Application {
 
 	public static void main(String[] args) {
 
 		CustomArrayList<Integer> elements = new CustomArrayList<>();
-		Application.populateNumbers(elements);
+	    Application.populateNumbers(elements);
 		Application.displayValues(elements);
-		System.out.println("Size is " + elements.getSize());
+	
 	}
 
 	private static void displayValues(CustomArrayList<Integer> elements) {
@@ -20,10 +22,14 @@ public class Application {
 		for (int i = 0; i <= 10; i++) {
 			elements.add(i);
 		}
-		elements.add(13);
-		elements.add(0,1000);
+	
 		
+		elements.add(0,1000);
+		elements.add(6, 133);
+		elements.remove(6);
+		elements.remove(0);
 		System.out.println("********** Array re-sized **********");
+		
 	}
 
 }

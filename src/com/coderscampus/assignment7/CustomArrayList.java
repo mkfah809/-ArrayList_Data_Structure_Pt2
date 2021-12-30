@@ -22,14 +22,15 @@ public class CustomArrayList<T> implements CustomList<T> {
 		if (index > sizeOfArray) {
 			throw new IndexOutOfBoundsException("Cannot add element at this current index position ");
 		}
-		if(sizeOfArray == currentItems.length) {
-			currentItems = Arrays.copyOf(currentItems, currentItems.length * 2);			
+		if (sizeOfArray == currentItems.length) {
+			currentItems = Arrays.copyOf(currentItems, currentItems.length * 2);
 			currentItems[index] = item;
-			sizeOfArray++;
 		}
-		for (int i = sizeOfArray - 1; i > index; i--) {
+		for (int i = sizeOfArray + 1; i >= index; i--) {
 			currentItems[i + 1] = currentItems[i];
 		}
+		currentItems[index] = item;
+		sizeOfArray++;
 
 		return true;
 	}
@@ -49,18 +50,20 @@ public class CustomArrayList<T> implements CustomList<T> {
 		return (T) currentItems[index];
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public T remove(int index) throws IndexOutOfBoundsException {
-		
+
+		for (int i = index; i < sizeOfArray - 1; i++) {
+			currentItems[i] = currentItems[i + 1];
+		}
+		@SuppressWarnings("unchecked")
+		T deletedElement = (T) currentItems[index];
 		if (index > sizeOfArray) {
 			throw new IndexOutOfBoundsException("Cannot add element at this current index position ");
 		}
-		for (int i = index; i <sizeOfArray-1; i++) {
-			currentItems[i] = currentItems[i+1];
-		}
 		sizeOfArray--;
-		return null;
+		return deletedElement;
 	}
 
 }
