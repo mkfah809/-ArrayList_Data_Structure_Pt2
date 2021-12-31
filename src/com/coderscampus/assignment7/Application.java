@@ -28,6 +28,8 @@ public class Application {
 		elements.add(6, 133);
 		elements.remove(6);
 		elements.remove(0);
+		
+	
 		System.out.println("********** Array re-sized **********");
 		
 	}
