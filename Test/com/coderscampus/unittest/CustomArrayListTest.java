@@ -13,8 +13,8 @@ class CustomArrayListTest {
 	@Test
 	void should_add_some_items_to_list() {
 		Integer expectedSize = null;
-		for (int addCtr = 1; addCtr <= 20; addCtr++) {
-			sut.add(addCtr);
+		for (int i = 1; i <= 20; i++) {
+			sut.add(i);
 		}
 		if (expectedSize == null) {
 			for (int showResultCtr = 0; showResultCtr < 19; showResultCtr++) {
@@ -33,7 +33,7 @@ class CustomArrayListTest {
 
 		sut.add(1, 45);
 
- 		assertEquals(11, sut.getSize());
+		assertEquals(11, sut.getSize());
 		assertEquals(8, sut.get(8));
 	}
 
@@ -51,52 +51,70 @@ class CustomArrayListTest {
 
 	@Test
 	void should_add_item_at_30th_index() {
-		for(int i = 0; i < 50; i++) {
+		for (int i = 0; i < 50; i++) {
 			sut.add(valueAdded++);
-			//System.out.println(sut.get(i));
+			// System.out.println(sut.get(i));
 		}
 
-		sut.add(0,1000);
-		sut.add(0,55);
- 		sut.add(30,31);
-		assertEquals(29,sut.get(31));
-		assertEquals(53,sut.getSize());
+		sut.add(0, 1000);
+		sut.add(0, 55);
+		sut.add(30, 31);
+		assertEquals(29, sut.get(31));
+		assertEquals(53, sut.getSize());
 	}
+
 	@Test
 	void should_add_item_at_0th_index() {
 		for (int i = 0; i <= 10; i++) {
 			sut.add(valueAdded);
 		}
 
-		sut.add(0,1000);
+		sut.add(0, 1000);
 		sut.add(6, 133);
 	}
-	
+
 	@Test
 	void should_remove_item_at_10000th_index() {
 		for (int i = 1; i <= 10000; i++) {
 			sut.add(valueAdded++);
 		}
-		
+
 		sut.remove(9999);
 		sut.remove(4);
-		
-		assertEquals(9998,sut.getSize());
-		assertEquals(6,sut.get(4));
-		
+
+		assertEquals(9998, sut.getSize());
+		assertEquals(6, sut.get(4));
+
 	}
 
 	@Test
 	void should_remove_item_at_4th_index() {
-		
+
 		for (int i = 1; i <= 10; i++) {
 			sut.add(valueAdded++);
 		}
-		
+		for (int showResultCtr = 0; showResultCtr <= 3; showResultCtr++) {
+			assertEquals(showResultCtr + 1, sut.get(showResultCtr));
+			System.out.println(sut.get(showResultCtr));
+		}
 		sut.add(501);
 		sut.add(917);
 		sut.remove(4);
-		assertEquals(6,sut.get(4));
-		assertEquals(6,sut.get(4));
+		assertEquals(6, sut.get(4));
+		assertEquals(6, sut.get(4));
+	}
+
+	@Test
+	void should_add_and_remove_item_at_flex_index() {
+		sut.add(1); // 0
+		sut.add(2); // 1
+		sut.add(3); // 2
+		sut.add(4); // 3
+
+		sut.add(2, 35);
+		sut.remove(3);
+	
+			assertEquals(2, sut.get(35));
+		
 	}
 }

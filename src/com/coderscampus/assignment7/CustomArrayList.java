@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class CustomArrayList<T> implements CustomList<T> {
 
 	Object[] currentItems = new Object[10];
-	int sizeOfArray = 0;
+	Integer sizeOfArray = 0;
 
 	@Override
 	public boolean add(T item) {
@@ -45,25 +45,25 @@ public class CustomArrayList<T> implements CustomList<T> {
 	public T get(int index) throws IndexOutOfBoundsException {
 		if (index >= sizeOfArray) {
 			throw new IndexOutOfBoundsException(
-					"The index at " + index + " is greater than to the size of " + sizeOfArray);
+					"The index at " + index + " is greater than the size of " + sizeOfArray);
 		}
 		return (T) currentItems[index];
 	}
 
-	
 	@Override
 	public T remove(int index) throws IndexOutOfBoundsException {
-
+		@SuppressWarnings("unchecked")
+		T item = (T) currentItems[index];
 		for (int i = index; i < sizeOfArray - 1; i++) {
 			currentItems[i] = currentItems[i + 1];
 		}
-		@SuppressWarnings("unchecked")
-		T deletedElement = (T) currentItems[index];
-		if (index > sizeOfArray) {
-			throw new IndexOutOfBoundsException("Cannot add element at this current index position ");
+
+		if (index >= sizeOfArray) {
+			throw new IndexOutOfBoundsException("Can't add an element at this current index position ");
 		}
 		sizeOfArray--;
-		return deletedElement;
+
+		return item;
 	}
 
 }
