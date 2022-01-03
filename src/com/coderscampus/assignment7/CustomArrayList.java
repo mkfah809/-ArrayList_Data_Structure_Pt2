@@ -62,7 +62,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 			throw new IndexOutOfBoundsException("Can't add an element at this current index position ");
 		}
 		sizeOfArray--;
-
+	
 		return item;
 	}
 
