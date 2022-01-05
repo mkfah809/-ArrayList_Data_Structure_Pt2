@@ -1,5 +1,6 @@
 package com.coderscampus.unittest;
 
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ class CustomArrayListTest {
 			for (int showResultCtr = 0; showResultCtr < 19; showResultCtr++) {
 				assertEquals(showResultCtr + 1, sut.get(showResultCtr));
 			}
-		
+
 			assertEquals(20, sut.getSize());
 		}
 	}
@@ -101,7 +102,7 @@ class CustomArrayListTest {
 		sut.add(501);
 		sut.add(917);
 		sut.remove(4);
-		assertEquals(6, sut.get(4));
+		assertEquals(11, sut.getSize());
 		assertEquals(6, sut.get(4));
 	}
 
@@ -114,8 +115,9 @@ class CustomArrayListTest {
 
 		sut.add(2, 35);
 		sut.remove(3);
-	
-			assertEquals(35, sut.get(2));
-		
+		sut.remove(0);
+		assertEquals(35, sut.get(1));
+		assertEquals(3, sut.getSize());
+
 	}
 }

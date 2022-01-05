@@ -26,8 +26,10 @@ public class CustomArrayList<T> implements CustomList<T> {
 			currentItems = Arrays.copyOf(currentItems, currentItems.length * 2);
 			currentItems[index] = item;
 		}
-		for (int i = sizeOfArray + 1; i >= index; i--) {
-			currentItems[i + 1] = currentItems[i];
+		if (currentItems[index] != null) {
+			for (int i = sizeOfArray + 1; i >= index; i--) {
+				currentItems[i + 1] = currentItems[i];
+			}
 		}
 		currentItems[index] = item;
 		sizeOfArray++;
@@ -54,7 +56,8 @@ public class CustomArrayList<T> implements CustomList<T> {
 	public T remove(int index) throws IndexOutOfBoundsException {
 		@SuppressWarnings("unchecked")
 		T item = (T) currentItems[index];
-		for (int i = index; i < sizeOfArray - 1; i++) {
+		currentItems[index] = null;
+		for (int i = index; i < sizeOfArray; i++) {
 			currentItems[i] = currentItems[i + 1];
 		}
 
@@ -62,7 +65,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 			throw new IndexOutOfBoundsException("Can't add an element at this current index position ");
 		}
 		sizeOfArray--;
-	
+
 		return item;
 	}
 
