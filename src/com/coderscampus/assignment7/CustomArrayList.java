@@ -24,13 +24,12 @@ public class CustomArrayList<T> implements CustomList<T> {
 		}
 		if (sizeOfArray == currentItems.length) {
 			currentItems = Arrays.copyOf(currentItems, currentItems.length * 2);
-			currentItems[index] = item;
 		}
-		if (currentItems[index] != null) {
+		
 			for (int i = sizeOfArray + 1; i >= index; i--) {
 				currentItems[i + 1] = currentItems[i];
 			}
-		}
+		
 		currentItems[index] = item;
 		sizeOfArray++;
 

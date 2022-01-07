@@ -17,9 +17,10 @@ public class Application {
 	}
 
 	private static void populateNumbers(CustomList<Integer> elements) {
-		for (int i = 0; i <= 10; i++) {
+		for (int i = 0; i < 10; i++) {
 			elements.add(i);
 		}
+	
 		elements.add(0, 1000);
 		elements.add(6, 133);
 		elements.remove(6);
