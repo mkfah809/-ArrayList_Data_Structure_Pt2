@@ -1,6 +1,8 @@
 package com.coderscampus.unittest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 import com.coderscampus.assignment7.CustomArrayList;
@@ -117,6 +119,10 @@ class CustomArrayListTest {
 		sut.remove(0);
 		assertEquals(35, sut.get(1));
 		assertEquals(3, sut.getSize());
-
+	}
+	@Test
+	void shoud_throw_exception() {
+		assertThrows(IndexOutOfBoundsException.class, 
+				() -> sut.add(100000, 100));
 	}
 }

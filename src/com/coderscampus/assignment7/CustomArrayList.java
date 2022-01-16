@@ -9,11 +9,12 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public boolean add(T item) {
-		if (sizeOfArray == currentItems.length) {
-			currentItems = Arrays.copyOf(currentItems, currentItems.length * 2);
-		}
-		currentItems[sizeOfArray++] = item;
-		return true;
+		return add(sizeOfArray, item);
+//		if (sizeOfArray == currentItems.length) {
+//			currentItems = Arrays.copyOf(currentItems, currentItems.length * 2);
+//		}
+//		currentItems[sizeOfArray++] = item;
+//		return true;
 	}
 
 	@Override
@@ -25,11 +26,11 @@ public class CustomArrayList<T> implements CustomList<T> {
 		if (sizeOfArray == currentItems.length) {
 			currentItems = Arrays.copyOf(currentItems, currentItems.length * 2);
 		}
-		
-			for (int i = sizeOfArray + 1; i >= index; i--) {
-				currentItems[i + 1] = currentItems[i];
-			}
-		
+
+		for (int i = sizeOfArray - 1; i > index; i--) {
+			currentItems[i] = currentItems[i - 1];
+		}
+
 		currentItems[index] = item;
 		sizeOfArray++;
 
